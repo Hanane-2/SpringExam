@@ -35,9 +35,12 @@ public class EmployeController {
     @Autowired private EmployeService employeeService;
     @Autowired private DepartmentRepository departmentRepository;
 
+    
+    //Ajout d’un employé avec sa photo
+
     @PostMapping("/employees/{departmentId}")
     public Employe addEmployee(
-            @PathVariable Long departmentId,  // Utilisation de @PathVariable au lieu de @RequestParam
+            @PathVariable Long departmentId,  
             @RequestParam(required = false) Long id,
             @RequestParam String name,
             @RequestParam int age,
@@ -74,18 +77,19 @@ public class EmployeController {
     public List<Employe> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
+    // Récupération des employés d’un département donné
 
     @GetMapping("/department/{id}/employees")
     public List<Employe> getAllEmployeesByDepartment(@PathVariable Long id) {
         Department department = departmentRepository.findById(id).orElse(null);
         return employeeService.getAllEmployeesByDepartment(department);
     }
-
+    //Suppression d’un employé avec sa photo
     @DeleteMapping("/employees/{id}")
     public boolean deleteEmployeeById(@PathVariable Long id) {
         return employeeService.deleteEmployeeById(id);
     }
-
+    //Suppression des employés de plus de 60 ans
     @DeleteMapping("/employees/age/{age}")
     public List<Employe> deleteEmployeesOlderThan(@PathVariable int age) {
         return employeeService.deleteEmployeesOlderThan(age);

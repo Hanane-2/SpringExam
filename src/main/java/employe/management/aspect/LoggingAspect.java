@@ -14,33 +14,38 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    
+    
+    
+     //enregistrer chaque mise à jour
+    
 
-    @Before("execution(* examen.employee.service.EmployeeService.addEmployee(..))")
+    @Before("execution(* employe.management.Service.EmployeService.addEmployee(..))")
     public void logBeforeAddEmployee(JoinPoint joinPoint) {
         logger.info("Adding new employee: {}", joinPoint.getArgs()[0]);
     }
 
-    @After("execution(* examen.employee.service.EmployeeService.addEmployee(..))")
+    @After("execution(* employe.management.Service.EmployeService.addEmployee(..))")
     public void logAfterAddEmployee(JoinPoint joinPoint) {
         logger.info("Employee added successfully");
     }
 
-    @Before("execution(* examen.employee.service.EmployeeService.updateEmployee(..))")
+    @Before("execution(* employe.management.Service.EmployeService.updateEmployee(..))")
     public void logBeforeUpdateEmployee(JoinPoint joinPoint) {
         logger.info("Updating employee: {}", joinPoint.getArgs()[0]);
     }
 
-    @After("execution(* examen.employee.service.EmployeeService.updateEmployee(..))")
+    @After("execution(* employe.management.Service.EmployeService.updateEmployee(..))")
     public void logAfterUpdateEmployee(JoinPoint joinPoint) {
         logger.info("Employee updated successfully");
     }
 
-    @Before("execution(* examen.employee.service.EmployeeService.deleteEmployeeById(..))")
+    @Before("execution(* employe.management.Service.EmployeService.deleteEmployeeById(..))")
     public void logBeforeDeleteEmployee(JoinPoint joinPoint) {
         logger.info("Deleting employee with ID: {}", joinPoint.getArgs()[0]);
     }
 
-    @After("execution(* examen.employee.service.EmployeeService.deleteEmployeeById(..))")
+    @After("execution(* employe.management.Service.EmployeService.deleteEmployeeById(..))")
     public void logAfterDeleteEmployee(JoinPoint joinPoint) {
         logger.info("Employee deleted successfully");
     }
